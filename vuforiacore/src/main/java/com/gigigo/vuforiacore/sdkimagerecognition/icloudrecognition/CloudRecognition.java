@@ -8,7 +8,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
+import android.support.v4ox.content.ContextCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;

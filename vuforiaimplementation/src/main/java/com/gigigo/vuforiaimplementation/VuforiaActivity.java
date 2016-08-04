@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4ox.content.ContextCompat;
+import android.support.v7ox.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +100,7 @@ public class VuforiaActivity extends AppCompatActivity implements ICloudRecognit
       actionBar.hide();
     }
 
-    android.support.v7.app.ActionBar actionBar1 = getSupportActionBar();
+    android.support.v7ox.app.ActionBar actionBar1 = getSupportActionBar();
 
     if (actionBar1 != null){
       actionBar1.hide();
