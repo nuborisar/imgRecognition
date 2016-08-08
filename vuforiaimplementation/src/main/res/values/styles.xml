@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+  <style name="IrAppThemeNoBar"
+      parent="@android:style/Theme.Black.NoTitleBar">
+  </style>
   <style name="irCustomizationScanWaterMark" >
     <item name="android:background">@drawable/ir_watermark</item>
   </style>

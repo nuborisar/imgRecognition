@@ -9,7 +9,7 @@ import com.gigigo.ggglib.ContextProvider;
 import com.gigigo.imagerecognitioninterface.ImageRecognitionCredentials;
 import com.gigigo.vuforiaimplementation.ImageRecognitionVuforiaImpl;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends  Activity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

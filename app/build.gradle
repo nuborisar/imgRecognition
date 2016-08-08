@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
-def VUFORIA_KEY =  '"' + parent.ext.props.vuforiaKey + '"'
-def VUFORIA_SECRET =  '"' + parent.ext.props.vuforiaSecret + '"'
+def VUFORIA_KEY =  '"'  + parent.ext.props.vuforiaKey + '"'
+def VUFORIA_SECRET =  '"'  + parent.ext.props.vuforiaSecret + '"'
 def VUFORIA_LICENSE =  '"' + parent.ext.props.vuforiaLicense + '"'
 
 android {

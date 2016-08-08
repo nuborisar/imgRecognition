@@ -22,7 +22,8 @@ import com.gigigo.vuforiacore.sdkimagerecognition.icloudrecognition.ICloudRecogn
 import com.gigigo.vuforiaimplementation.credentials.ParcelableVuforiaCredentials;
 import com.vuforia.Trackable;
 
-public class VuforiaActivity extends FragmentActivity implements ICloudRecognitionCommunicator {
+public class VuforiaActivity extends FragmentActivity
+        implements ICloudRecognitionCommunicator {
 
   private static final String RECOGNIZED_IMAGE_INTENT = "com.gigigo.imagerecognition.intent.action.RECOGNIZED_IMAGE";
 
