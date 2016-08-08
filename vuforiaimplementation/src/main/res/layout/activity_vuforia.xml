@@ -7,7 +7,6 @@
 
   <include layout="@layout/ir_toolbar_view"/>
 
-
   <!--This is the layout 4 add GLView from Vuforia-->
   <RelativeLayout
       android:id="@+id/layoutContentVuforiaGL"
