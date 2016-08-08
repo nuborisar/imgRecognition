@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-
-  <android.support.v7.widget.Toolbar
-      android:id="@+id/toolbar_sdkirorchextra"
-      android:layout_height="wrap_content"
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:layout_width="match_parent"
-
-       android:minHeight="50dp"
-      android:elevation="2dp"
+      android:layout_height="wrap_content"
       android:background="@color/ir_color_primary"
-      >
+      android:minHeight="@dimen/actionbar_size_ir"
+      android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/btnCloseVuforia"
@@ -24,7 +14,6 @@
         style="@style/irCustomizationCloseScann"
         android:contentDescription="@null"
         />
-
     <TextView
         android:id="@+id/tvTitleVuforia"
         android:layout_width="wrap_content"
@@ -35,6 +24,7 @@
         android:text="@string/ir_app_name"
         />
 
-  </android.support.v7.widget.Toolbar>
+  </LinearLayout>
 
-</LinearLayout>
+
+

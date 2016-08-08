@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4ox.app.FragmentActivity;
 import android.support.v4ox.content.ContextCompat;
 import android.support.v7ox.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import com.gigigo.vuforiacore.sdkimagerecognition.icloudrecognition.ICloudRecogn
 import com.gigigo.vuforiaimplementation.credentials.ParcelableVuforiaCredentials;
 import com.vuforia.Trackable;
 
-public class VuforiaActivity extends AppCompatActivity implements ICloudRecognitionCommunicator {
+public class VuforiaActivity extends FragmentActivity implements ICloudRecognitionCommunicator {
 
   private static final String RECOGNIZED_IMAGE_INTENT = "com.gigigo.imagerecognition.intent.action.RECOGNIZED_IMAGE";
 
@@ -32,11 +33,6 @@ public class VuforiaActivity extends AppCompatActivity implements ICloudRecognit
   @Override protected void onCreate(Bundle state) {
     super.onCreate(state);
     GGGLogImpl.log("VuforiaActivity.onCreate");
-
-    if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
-      hideActionBar();
-    }
-
     initVuforiaKeys(getIntent());
   }
 
@@ -67,9 +63,7 @@ public class VuforiaActivity extends AppCompatActivity implements ICloudRecognit
     }
 
   @Override public void setContentViewTop(View vuforiaView) {
-
     LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
     View view = inflater.inflate(R.layout.activity_vuforia, null);
 
     RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.layoutContentVuforiaGL);
@@ -89,22 +83,6 @@ public class VuforiaActivity extends AppCompatActivity implements ICloudRecognit
     //endregion
 
     setThemeColorScheme();
-
-  }
-
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  private void hideActionBar(){
-    ActionBar actionBar = getActionBar();
-
-    if (actionBar != null){
-      actionBar.hide();
-    }
-
-    android.support.v7ox.app.ActionBar actionBar1 = getSupportActionBar();
-
-    if (actionBar1 != null){
-      actionBar1.hide();
-    }
 
   }
 
