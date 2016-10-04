@@ -1,5 +1,6 @@
 package com.gigigo.vuforiaimplementation;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -9,19 +10,27 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+
+import com.vuforia.Matrix44F;
+import com.vuforia.ObjectTarget;
+import com.vuforia.Tool;
+import com.vuforia.Trackable;
+import com.vuforia.TrackableResult;
 
 import java.util.Random;
 
 /**
- * Created by nubor on 30/09/2016.
+ * Created by Alberto Sainz on 30/09/2016.
  */
 public class MarkFakeFeaturePoint extends View implements Runnable {
 
     final Bitmap fakePoint;
     boolean bDisableIfThrowException = false;
     Random randX, randY;
-
+    static final int MAX_NUMBER_POINTS = 15;
     Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             invalidate();
@@ -29,12 +38,13 @@ public class MarkFakeFeaturePoint extends View implements Runnable {
 
         ;
     };
-
+    static Paint p = new Paint();
     ObjectAnimator mAnimation;
 
     public MarkFakeFeaturePoint(Context context) {
         super(context);
         fakePoint = BitmapFactory.decodeResource(getResources(), R.drawable.ir_mark_point);
+
         randX = new Random();
         randY = new Random();
 
@@ -49,16 +59,20 @@ public class MarkFakeFeaturePoint extends View implements Runnable {
 
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //canvas.restore();
         Random rand = new Random();
-        int n = rand.nextInt(5);
-        for (int i = 0; i < n; i++)
+
+        int n = rand.nextInt(MAX_NUMBER_POINTS);
+        //paint until MAX_NUMBER_POINTS
+        for (int i = 0; i < n; i++) {
             paintFakeFeaturePoint(canvas);
+        }
+
     }
 
     private void paintFakeFeaturePoint(Canvas canvas) {
-        int xMax = 720;
-        int yMax = 1280;
+        int xMax = 0;
+        int yMax = 0;
+        final AnimatorSet mAnimationSet;
         int x, y = 0;
         try {
             int screenHeight = getResources().getDisplayMetrics().heightPixels;
@@ -68,12 +82,12 @@ public class MarkFakeFeaturePoint extends View implements Runnable {
         } catch (Throwable tr) {
             bDisableIfThrowException = true;
         }
-
+        //this calculate the scanline distance
         Random rand = new Random();
-        int n = rand.nextInt(200) + 1; // +1 for avoid 0/2
+
         x = randX.nextInt(xMax);
         y = randY.nextInt(yMax);
-
+        //get scanline currentposition
         if (mAnimation != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
             Random randy = new Random(); //earl!
 
@@ -81,14 +95,18 @@ public class MarkFakeFeaturePoint extends View implements Runnable {
             int valueYint = Math.round(valueYScanline);
 
             int max = valueYint + 100;
-            int min= valueYint - 100;
-            //todo set limits
-            y = randy.nextInt((max - min) + 1) + min;
-        }
+            int min = valueYint - 100;
 
-        Paint p = new Paint();
-        if ((n % 2) == 0)
-            canvas.drawBitmap(fakePoint, x, y, p);
+            if (max > xMax) max = xMax;
+            if (min < 0) min = 0;
+
+            y = randy.nextInt((max - min) + 1) + min;
+
+            if (y > xMax) y = xMax - 50;
+            if (y < 0) y = 50;
+
+        }
+        canvas.drawBitmap(fakePoint, x, y, p);
     }
 
     public void run() {

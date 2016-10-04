@@ -4,5 +4,7 @@
   <style name="vuforiaCustomizationLoadingMessage" >
     <item name="android:text">@string/vuforia_loading_indicator_message</item>
   </style>
-  
+
+
+
 </resources>

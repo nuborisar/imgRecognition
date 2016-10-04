@@ -3,6 +3,7 @@ package com.gigigo.vuforiacore.sdkimagerecognition.icloudrecognition;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
+import android.util.Log;
 
 import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.VuforiaSession;
 import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.utils.CubeShaders;
@@ -13,11 +14,13 @@ import com.vuforia.ObjectTarget;
 import com.vuforia.Renderer;
 import com.vuforia.State;
 import com.vuforia.Tool;
+import com.vuforia.Trackable;
 import com.vuforia.TrackableResult;
 import com.vuforia.VIDEO_BACKGROUND_REFLECTION;
 import com.vuforia.Vuforia;
 
 import java.util.Vector;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -152,6 +155,23 @@ public class CloudRecognitionRenderer implements GLSurfaceView.Renderer {
             float[] modelViewProjection = new float[16];
 
             float[] objectSize = objectTarget.getSize().getData();
+
+            for (int tIdx = 0; tIdx < state.getNumTrackableResults(); tIdx++) {
+                TrackableResult result2 = state.getTrackableResult(tIdx);
+                Trackable trackable = result2.getTrackable();
+                ObjectTarget objectTarget2 = (ObjectTarget) trackable;
+
+                Matrix44F modelViewMatrix_Vuforia2 = Tool
+                        .convertPose2GLMatrix(result2.getPose());
+                float[] modelViewMatrix2 = modelViewMatrix_Vuforia2.getData();
+
+                // deal with the modelview and projection matrices
+                float[] modelViewProjection2 = new float[16];
+
+                float[] objectSize2 = objectTarget2.getSize().getData();
+                System.out.println("************************" + objectSize2.toString());
+
+            }
 
 
 

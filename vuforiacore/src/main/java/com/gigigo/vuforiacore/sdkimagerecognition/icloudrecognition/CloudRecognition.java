@@ -30,11 +30,15 @@ import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.VuforiaSess
 import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.utils.LoadingDialogHandler;
 import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.utils.VuforiaGLView;
 import com.vuforia.CameraDevice;
+import com.vuforia.Matrix44F;
+import com.vuforia.ObjectTarget;
 import com.vuforia.ObjectTracker;
 import com.vuforia.State;
 import com.vuforia.TargetFinder;
 import com.vuforia.TargetSearchResult;
+import com.vuforia.Tool;
 import com.vuforia.Trackable;
+import com.vuforia.TrackableResult;
 import com.vuforia.Tracker;
 import com.vuforia.TrackerManager;
 import com.vuforia.Vuforia;
@@ -250,10 +254,8 @@ public class CloudRecognition implements ApplicationControl {
         LayoutInflater inflater = LayoutInflater.from(this.mActivity);
         mUILayout = (RelativeLayout) inflater.inflate(R.layout.camera_overlay_vuforia, null, false);
         mUILayout.setVisibility(View.VISIBLE);
-//new mUILayout.setBackgroundColor(Color.BLACK);
+
         ProgressBar loadingProgressBar = (ProgressBar) mUILayout.findViewById(R.id.loading_indicator);
-        //todo check indeterminate api necesary
-       // loadingProgressBar.setIndeterminate(true);
         // By default
         loadingDialogHandler.mLoadingDialogContainer = mUILayout.findViewById(R.id.loading_container);
 
@@ -651,6 +653,7 @@ public class CloudRecognition implements ApplicationControl {
                 TargetSearchResult result = finder.getResult(0);
                 Log.i("#################", "#################" + result.getMetaData() + "");
                 Log.i("#################", "#################" + finder.getResultCount() + "");
+
                 // Check if this target is suitable for tracking:
                 if (result.getTrackingRating() > 0) {
 
