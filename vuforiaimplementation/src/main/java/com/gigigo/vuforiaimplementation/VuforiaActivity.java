@@ -27,7 +27,7 @@ public class VuforiaActivity extends FragmentActivity
         implements ICloudRecognitionCommunicator {
 
     private static final String RECOGNIZED_IMAGE_INTENT = "com.gigigo.imagerecognition.intent.action.RECOGNIZED_IMAGE";
-
+    private static final int ANIM_DURATION =3000;
     //basics for any vuforia activity
     //private View mView;
     private static CloudRecognitionActivityLifeCycleCallBack mCloudRecoCallBack;
@@ -111,16 +111,13 @@ public class VuforiaActivity extends FragmentActivity
         scanLine.setVisibility(View.VISIBLE);
         // Create animators for y axe
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-            int yMax = 1920;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                yMax = mVuforiaView.getDisplay().getHeight();
-            }
-
-            yMax = (int)(yMax *0.9);// 174;
+            int yMax = 0;
+            yMax = getResources().getDisplayMetrics().heightPixels; //mVuforiaView.getDisplay().getHeight();
+            yMax = (int) (yMax * 0.9);// 174;
 
             ObjectAnimator oay = ObjectAnimator.ofFloat(scanLine, "translationY", 0, yMax);
             oay.setRepeatCount(Animation.INFINITE);
-            oay.setDuration(2000);
+            oay.setDuration(ANIM_DURATION);
             oay.setRepeatMode(Animation.REVERSE);
 
             oay.setInterpolator(new LinearInterpolator());
