@@ -9,6 +9,7 @@ import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.utils.CubeS
 import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.utils.Texture;
 import com.gigigo.vuforiacore.sdkimagerecognition.vuforiaenvironment.utils.VuforiaUtils;
 import com.vuforia.Matrix44F;
+import com.vuforia.ObjectTarget;
 import com.vuforia.Renderer;
 import com.vuforia.State;
 import com.vuforia.Tool;
@@ -140,6 +141,21 @@ public class CloudRecognitionRenderer implements GLSurfaceView.Renderer {
             if (trackableResult == null) {
                 return;
             }
+
+            ObjectTarget objectTarget = (ObjectTarget) trackableResult.getTrackable();
+
+            Matrix44F modelViewMatrix_Vuforia = Tool
+                    .convertPose2GLMatrix(trackableResult.getPose());
+            float[] modelViewMatrix = modelViewMatrix_Vuforia.getData();
+
+            // deal with the modelview and projection matrices
+            float[] modelViewProjection = new float[16];
+
+            float[] objectSize = objectTarget.getSize().getData();
+
+
+
+            //todo call vuforiaactivity stop animation across cloudreco...FUCK VUFORIA 6.0
 
             mCloudReco.stopFinderIfStarted();
 

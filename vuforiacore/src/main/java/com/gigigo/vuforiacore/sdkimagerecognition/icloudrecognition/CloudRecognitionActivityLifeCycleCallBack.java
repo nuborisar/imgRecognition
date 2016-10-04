@@ -36,7 +36,7 @@ public class CloudRecognitionActivityLifeCycleCallBack implements Application.Ac
             GGGLogImpl.log(ex.getMessage(), LogLevel.ERROR);
         }
     }
-
+    @Deprecated
     public void setUIScanLineColor(int color) {
         try {
             if (this.mCloudReco != null)
@@ -45,7 +45,7 @@ public class CloudRecognitionActivityLifeCycleCallBack implements Application.Ac
             GGGLogImpl.log(ex.getMessage(), LogLevel.ERROR);
         }
     }
-
+    @Deprecated
     public void setUIPointColor(int color) {
         try {
             if (this.mCloudReco != null)

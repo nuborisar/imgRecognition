@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
 
-def VUFORIA_KEY =  '"'  + parent.ext.props.vuforiaKey + '"'
-def VUFORIA_SECRET =  '"'  + parent.ext.props.vuforiaSecret + '"'
-def VUFORIA_LICENSE =  '"' + parent.ext.props.vuforiaLicense + '"'
+//def VUFORIA_KEY =  '"'  + parent.ext.props.vuforiaKey + '"'
+//def VUFORIA_SECRET =  '"'  + parent.ext.props.vuforiaSecret + '"'
+//def VUFORIA_LICENSE =  '"' + parent.ext.props.vuforiaLicense + '"'
+
+
+
+
 
 android {
   compileSdkVersion 23
@@ -15,9 +19,9 @@ android {
     versionCode 1
     versionName "1.0"
 
-    buildConfigField "String", "VUFORIA_KEY", VUFORIA_KEY
-    buildConfigField "String", "VUFORIA_SECRET", VUFORIA_SECRET
-    buildConfigField "String", "VUFORIA_LICENSE", VUFORIA_LICENSE
+//    buildConfigField "String", "VUFORIA_KEY", VUFORIA_KEY
+//    buildConfigField "String", "VUFORIA_SECRET", VUFORIA_SECRET
+//    buildConfigField "String", "VUFORIA_LICENSE", VUFORIA_LICENSE
   }
   buildTypes {
     release {
@@ -25,6 +29,12 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+
 }
 
 dependencies {
